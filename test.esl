@@ -1,39 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SchedulerList version='1.6'>
-<Profile>Default</Profile>
-<Job>
-<Name>M 31</Name>
-<Group></Group>
-<Coordinates>
-<J2000RA>0.712319</J2000RA>
-<J2000DE>41.2691</J2000DE>
-</Coordinates>
-<PositionAngle>-181</PositionAngle>
-<Sequence>/home/gtulloch/Projects/EKOSProcessingScripts/test.esq</Sequence>
-<StartupCondition>
-<Condition>ASAP</Condition>
-</StartupCondition>
-<Constraints>
-<Constraint value='0'>MinimumAltitude</Constraint>
-<Constraint>EnforceTwilight</Constraint>
-<Constraint>EnforceArtificialHorizon</Constraint>
-</Constraints>
-<CompletionCondition>
-<Condition>Sequence</Condition>
-</CompletionCondition>
-<Steps>
-<Step>Track</Step>
-<Step>Focus</Step>
-<Step>Align</Step>
-<Step>Guide</Step>
-</Steps>
-</Job>
-<SchedulerAlgorithm value='1'/>
-<ErrorHandlingStrategy value='1'>
-<delay>0</delay>
-</ErrorHandlingStrategy>
-<StartupProcedure>
-</StartupProcedure>
-<ShutdownProcedure>
-</ShutdownProcedure>
+<SchedulerList version="1.6">
+	<Profile>
+		Default
+	</Profile>
+	<Job>
+		<Name>
+			M 31
+		</Name>
+		<Group>
+		</Group>
+		<Coordinates>
+			<J2000RA>
+				0.712319
+			</J2000RA>
+			<J2000DE>
+				41.2691
+			</J2000DE>
+		</Coordinates>
+		<PositionAngle>
+			-181
+		</PositionAngle>
+		<Sequence>
+			/home/gtulloch/Projects/EKOSProcessingScripts/test.esq
+		</Sequence>
+		<StartupCondition>
+			<Condition>
+				ASAP
+			</Condition>
+		</StartupCondition>
+		<Constraints>
+			<Constraint value="0">
+				MinimumAltitude
+			</Constraint>
+			<Constraint>
+				EnforceTwilight
+			</Constraint>
+			<Constraint>
+				EnforceArtificialHorizon
+			</Constraint>
+		</Constraints>
+		<CompletionCondition>
+			<Condition>
+				Sequence
+			</Condition>
+		</CompletionCondition>
+		<Steps>
+			<Step>
+				Track
+			</Step>
+			<Step>
+				Focus
+			</Step>
+			<Step>
+				Align
+			</Step>
+			<Step>
+				Guide
+			</Step>
+		</Steps>
+	</Job>
+	<SchedulerAlgorithm value="1" />
+	<ErrorHandlingStrategy value="1">
+		<delay>
+			0
+		</delay>
+	</ErrorHandlingStrategy>
+	<StartupProcedure>
+	</StartupProcedure>
+	<ShutdownProcedure>
+	</ShutdownProcedure>
 </SchedulerList>
