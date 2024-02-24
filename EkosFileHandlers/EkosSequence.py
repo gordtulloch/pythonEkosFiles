@@ -1,10 +1,11 @@
 import xmltodict
 
-class EkosSequence(inputFile):
+class EkosSequence:
+    xmlText=''
     def __init__(self,inputFile):
         self.inFile=open(inputFile,'r')
         self.xmlText=self.inFile.read()
-        self.xmlDict=xmltodict.parse(xmlText)
+        self.xmlDict=xmltodict.parse(self.xmlText)
         self.jobList=self.xmlDict["SequenceQueue"]["Job"]
         self.templateJob=self.jobList[0]
         self.inFile.close()
@@ -78,53 +79,18 @@ class EkosSequence(inputFile):
     #############################################################
     # Job handling
     #   Return a list of exposure jobs    
-    def getJobs():
+    def getJobs(self):
         return(self.jobList)
     #   Add an additional exposure job, returns job index number
-    def addJob():
-        jobDict.append(self.templateJob)
-        return len(jobDict)
+    def addJob(self):
+        jobList.append(self.templateJob)
+        return len(self.jobList)
     #   Remove all exposure jobs
-    def delJobs():
+    def delJobs(self):
         pass
     # Return a specific job 
-    def getJob(seqNo):
-        return jobDict[seqNo]
+    def getJob(self,seqNo):
+        return self.jobList[seqNo]
     
     # Design decision - let the user just manipulate job entries directly, getters and setters more of a pain than they're worth
 
-'''<Job>
-		<Exposure>1</Exposure>
-		<Format>Mono</Format>
-		<Encoding>FITS</Encoding>
-		<Binning>
-			<X>1</X>
-			<Y>1</Y>
-		</Binning>
-		<Frame>
-			<X>0</X>
-			<Y>0</Y>
-			<W>1280</W>
-			<H>1024</H>
-		</Frame>
-		<Temperature force="false">0</Temperature>
-		<Filter>Red</Filter>
-		<Type>Light</Type>
-		<Count>1</Count>
-		<Delay>0</Delay>
-		<TargetName></TargetName>
-		<GuideDitherPerJob>0</GuideDitherPerJob>
-		<FITSDirectory>/home/gtulloch/AstroPictures</FITSDirectory>
-		<PlaceholderFormat>/%t/%T/%F/%t_%T_%F</PlaceholderFormat>
-		<PlaceholderSuffix>3</PlaceholderSuffix>
-		<UploadMode>0</UploadMode>
-		<Properties></Properties>
-		<Calibration>
-			<PreAction>
-				<Type>0</Type>
-			</PreAction>
-			<FlatDuration dark="false">
-				<Type>Manual</Type>
-			</FlatDuration>
-		</Calibration>
-	</Job>'''
