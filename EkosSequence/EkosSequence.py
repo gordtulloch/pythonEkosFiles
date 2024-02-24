@@ -9,17 +9,9 @@ class EkosSequence(inputFile):
         self.templateJob=self.jobList[0]
         self.inFile.close()
 
-    # Return a list of exposure jobs    
-    def getExposures():
-        return(self.jobList)
-    # Add an additional exposure job, returns job index number
-    def addExposure():
-        jobDict.append(self.templateJob)
-        return len(jobDict)
-    # Remove all exposure jobs
-    def delExposures():
-        pass
-    #GuideDeviation enabled="false">2</GuideDeviation>
+    ######################################################################
+    # Getters and setters
+    #   GuideDeviation enabled="false">2</GuideDeviation>
     def getGuideDeviation():
         return self.xmlDict["SequenceQueue"]["GuideDeviation"]
         pass
@@ -27,7 +19,7 @@ class EkosSequence(inputFile):
         self.xmlDict["SequenceQueue"]["GuideDeviation"]['@enabled'] = Enable
         self.xmlDict["SequenceQueue"]["GuideDeviation"]["#text"]    = Text
         return
-	# GuideStartDeviation enabled="false">2</GuideStartDeviation>
+	#   GuideStartDeviation enabled="false">2</GuideStartDeviation>
     def getGuideStartDeviation():
         return self.xmlDict["SequenceQueue"]["GuideStartDeviation"]
         pass
@@ -35,11 +27,11 @@ class EkosSequence(inputFile):
         self.xmlDict["SequenceQueue"]["GuideStartDeviation"]['@enabled'] = Enable
         self.xmlDict["SequenceQueue"]["GuideStartDeviation"]["#text"]    = Text
         return
-	#HFRCheck enabled="false">
-	#	<HFRDeviation>0.5</HFRDeviation>
-	#	<HFRCheckAlgorithm>0</HFRCheckAlgorithm>
-	#	<HFRCheckThreshold>10</HFRCheckThreshold>
-	#	<HFRCheckFrames>1</HFRCheckFrames>
+	#   HFRCheck enabled="false">
+	#	    <HFRDeviation>0.5</HFRDeviation>
+	#	    <HFRCheckAlgorithm>0</HFRCheckAlgorithm>
+	#	    <HFRCheckThreshold>10</HFRCheckThreshold>
+	#	    <HFRCheckFrames>1</HFRCheckFrames>
     def getHFRCheck():
         return self.xmlDict["SequenceQueue"]["HFRCheck"]
     def setHFRCheck(Enable,HFRDeviation,HFRCheckAlgorithm,HFRCheckThreshold,HFRCheckFrames):
@@ -49,28 +41,28 @@ class EkosSequence(inputFile):
         self.xmlDict["SequenceQueue"]["HFRCheck"]["HFRCheckThreshold"]=HFRCheckThreshold
         self.xmlDict["SequenceQueue"]["HFRCheck"]["HFRCheckFrames"]=HFRCheckFrames
         return
-    #RefocusOnTemperatureDelta enabled="false">1</RefocusOnTemperatureDelta>
+    #   RefocusOnTemperatureDelta enabled="false">1</RefocusOnTemperatureDelta>
     def getRefocusOnTemperatureDelta(Enable,Text):
         return self.xmlDict["SequenceQueue"]["RefocusOnTemperatureDelta"]
     def setRefocusOnTemperatureDelta():
         self.xmlDict["SequenceQueue"]["RefocusOnTemperatureDelta"]['@enabled']=Enable
         self.xmlDict["SequenceQueue"]["RefocusOnTemperatureDelta"]['#text']=Text
         return
-	#RefocusEveryN enabled="false">60</RefocusEveryN>
+	#   RefocusEveryN enabled="false">60</RefocusEveryN>
     def getRefocusEveryN():
-        return self.xmlDict["SequenceQueue"]["RefocusEveryN"]
-
+        return self
     def setRefocusEveryN(Enable,Text):
         self.xmlDict["SequenceQueue"]["setRefocusEveryN"]['@enabled']=Enable
         self.xmlDict["SequenceQueue"]["setRefocusEveryN"]['#text']=Text
         return
-	# RefocusOnMeridianFlip enabled="false"></RefocusOnMeridianFlip>
+	#   RefocusOnMeridianFlip enabled="false"></RefocusOnMeridianFlip>
     def getRefocusOnMeridianFlip():
         return self.xmlDict["SequenceQueue"]["RefocusOnMeridianFlip"]
     def setRefocusOnMeridianFlip():
-      pass
-
-    # Save the Sequence file to the same filename as when loaded
+        self.xmlDict["SequenceQueue"]["RefocusOnMeridianFlip"]['@enabled']=Enable
+        return
+    ##############################################################
+    # Save routines
     def save():
         outFile=open(inputFile,'w')
         outFile.write(xmltodict.unparse(xmlDict, pretty=True))
@@ -82,6 +74,24 @@ class EkosSequence(inputFile):
         outFile.write(xmltodict.unparse(xmlDict, pretty=True))
         outFile.close()
         return
+    
+    #############################################################
+    # Job handling
+    #   Return a list of exposure jobs    
+    def getJobs():
+        return(self.jobList)
+    #   Add an additional exposure job, returns job index number
+    def addJob():
+        jobDict.append(self.templateJob)
+        return len(jobDict)
+    #   Remove all exposure jobs
+    def delJobs():
+        pass
+    # Return a specific job 
+    def getJob(seqNo):
+        return jobDict[seqNo]
+    
+    # Design decision - let the user just manipulate job entries directly, getters and setters more of a pain than they're worth
 
 '''<Job>
 		<Exposure>1</Exposure>
