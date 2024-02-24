@@ -7,4 +7,4 @@ schFile=EkosSchedule('daily.esl')
 
 Getters and setters are implemented for all elements of the XML based files
 
-STATUS: Still working on Sequence, Schedule not yet done. Currently supports v2.6 of Ekos files
+STATUS: Sequence mostly complete, Schedule is a skeleton. Currently supports v2.6 of Ekos files

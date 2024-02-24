@@ -1,7 +1,7 @@
 import xmltodict
 
 class EkosSequence:
-    xmlText=''
+
     def __init__(self,inputFile):
         self.inFile=open(inputFile,'r')
         self.xmlText=self.inFile.read()
@@ -87,10 +87,15 @@ class EkosSequence:
         return len(self.jobList)
     #   Remove all exposure jobs
     def delJobs(self):
-        pass
+        # Pop all of the jobs off the list
+        for job in jobList:
+            jobList.pop()
+        # Reinitialize job 0 from template - we always want one job in the list
+        jobList.append(self.templateJob)
+        return
     # Return a specific job 
     def getJob(self,seqNo):
         return self.jobList[seqNo]
-    
+    # Note:
     # Design decision - let the user just manipulate job entries directly, getters and setters more of a pain than they're worth
 
